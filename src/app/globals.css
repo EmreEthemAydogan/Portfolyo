@@ -1,0 +1,1362 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   Midnight Engineering — tasarım tokenları
+   Renkler yalnızca burada tanımlanır. Bileşenler bu tokenları kullanır.
+   ========================================================================== */
+
+@theme {
+  --color-*: initial;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* Midnight çekirdek */
+  --color-ink-950: #070b16;
+  --color-ink-900: #0b1020; /* ana zemin */
+  --color-ink-850: #0f1629;
+  --color-ink-800: #131c30;
+  --color-ink-700: #172237; /* ikincil yüzey */
+  --color-ink-600: #1f2c45;
+  --color-ink-500: #2a3a57;
+  --color-heading: #f5f6f8; /* başlık metni */
+  --color-body: #a6b1c3; /* açıklama metni */
+  --color-muted: #7e899d;
+  --color-accent: #90bdfc; /* mavi vurgu */
+  --color-accent-strong: #b3d1fe;
+
+  /* Hero ışığı: mor, mavi-mor, soğuk mavi. Yalnızca ışık ve dekor için. */
+  --color-violet-200: #dcd4ff;
+  --color-violet-300: #bcadff;
+  --color-violet-400: #9b88ff;
+  --color-violet-500: #7a63f4;
+  --color-indigo-400: #6e8cff;
+
+  /* Proje 01 — Aydoğan Çanta: krem, bej, espresso */
+  --color-cream-50: #faf6f0;
+  --color-cream-100: #f3ede3;
+  --color-cream-200: #e8dfd1;
+  --color-cream-300: #d6c8b3;
+  --color-espresso-950: #1c130d;
+  --color-espresso-900: #2a1c13;
+  --color-espresso-800: #3a291d;
+  --color-espresso-700: #4b3828;
+  --color-espresso-500: #6b5644;
+  --color-gold-500: #b38e3e; /* kremde yalnızca dekoratif */
+  --color-gold-700: #7c5e20; /* kremde metin */
+  --color-live: #2f8f57;
+
+  /* Proje 02 — Sağlık Asistanı: koyu lacivert, turkuaz */
+  --color-abyss-950: #030912;
+  --color-abyss-900: #06111f;
+  --color-abyss-800: #0a1b2e;
+  --color-abyss-700: #0f2740;
+  --color-cyan-200: #b0f1ec;
+  --color-cyan-300: #72e2db;
+  --color-cyan-400: #3fcfc8;
+
+  /* CV vitrini: yeşil, mavi-yeşil */
+  --color-jade-200: #bdf5e0;
+  --color-jade-300: #82e8c4;
+  --color-jade-400: #3fd3a3;
+  --color-jade-500: #1aa97f;
+
+  /* Akışkan tipografi ölçeği. Yorumlar 1440 px'teki yaklaşık değerdir. */
+  --text-eyebrow: 0.75rem;
+  --text-eyebrow--line-height: 1.4;
+  --text-eyebrow--letter-spacing: 0.2em;
+  --text-lead: clamp(1.1875rem, 1.05rem + 0.5vw, 1.5rem); /* 24 px */
+  --text-lead--line-height: 1.38;
+  --text-lead--letter-spacing: -0.012em;
+  --text-hero: clamp(2.625rem, 1.6rem + 4.4vw, 5.75rem); /* 89 px */
+  --text-hero--line-height: 0.95;
+  --text-hero--letter-spacing: -0.042em;
+  --text-closing: clamp(2.375rem, 1.45rem + 3.4vw, 4.5rem); /* 72 px */
+  --text-closing--line-height: 1;
+  --text-closing--letter-spacing: -0.038em;
+  --text-section: clamp(2.125rem, 1.35rem + 2.7vw, 4rem); /* 60 px */
+  --text-section--line-height: 1;
+  --text-section--letter-spacing: -0.035em;
+  --text-project: clamp(2.125rem, 1.4rem + 2.3vw, 3.5rem); /* 56 px */
+  --text-project--line-height: 1.02;
+  --text-project--letter-spacing: -0.032em;
+  --text-email: clamp(1rem, 5.2vw - 0.1rem, 3rem); /* 48 px */
+  --text-email--line-height: 1.15;
+  --text-email--letter-spacing: -0.03em;
+
+  /* Gölgeler */
+  --shadow-frame-cream: 0 3rem 5rem -2.5rem rgb(42 28 19 / 0.38), 0 0.75rem 1.5rem -0.75rem rgb(42 28 19 / 0.18);
+  --shadow-frame-dark: 0 3rem 6rem -2.5rem rgb(0 0 0 / 0.85), 0 1rem 2rem -1rem rgb(0 0 0 / 0.5);
+
+  /* Hareket */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out-sine: cubic-bezier(0.37, 0, 0.63, 1);
+}
+
+@theme inline {
+  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ==========================================================================
+   Temel katman
+   ========================================================================== */
+
+@layer base {
+  :root {
+    --focus-ring: var(--color-accent);
+    --grain-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    --grain-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.16 0 0 0 0 0.11 0 0 0 0 0.07 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  html {
+    color-scheme: dark;
+    scrollbar-gutter: stable;
+    background-color: var(--color-ink-900);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  html:has(dialog[open]) {
+    overflow: hidden;
+  }
+
+  body {
+    min-height: 100svh;
+    background-color: var(--color-ink-900);
+    background-image: var(--grain-light);
+    color: var(--color-body);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    color: var(--color-heading);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: color-mix(in oklab, var(--color-accent) 32%, transparent);
+    color: var(--color-heading);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 3px;
+  }
+
+  [id] {
+    scroll-margin-top: 4.5rem;
+  }
+}
+
+/* ==========================================================================
+   Bileşen katmanı
+   ========================================================================== */
+
+@layer components {
+  .shell {
+    width: 100%;
+    max-width: 90rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  @media (width >= 40rem) {
+    .shell {
+      padding-inline: 1.5rem;
+    }
+  }
+
+  @media (width >= 48rem) {
+    .shell {
+      padding-inline: 2rem;
+    }
+  }
+
+  @media (width >= 64rem) {
+    .shell {
+      padding-inline: 3rem;
+    }
+  }
+
+  @media (width >= 80rem) {
+    .shell {
+      padding-inline: 4rem;
+    }
+  }
+
+  .eyebrow {
+    font-family: var(--font-display);
+    font-size: var(--text-eyebrow);
+    line-height: var(--text-eyebrow--line-height);
+    letter-spacing: var(--text-eyebrow--letter-spacing);
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  .theme-cream {
+    --focus-ring: var(--color-espresso-900);
+    background-image: var(--grain-dark);
+  }
+
+  .theme-cream .theme-espresso {
+    --focus-ring: var(--color-cream-100);
+  }
+
+  .theme-abyss {
+    --focus-ring: var(--color-cyan-300);
+  }
+
+  .theme-jade {
+    --focus-ring: var(--color-jade-300);
+  }
+
+  /* --- Bağlantılar --- */
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition:
+      background-size 0.5s var(--ease-out-expo),
+      color 0.3s var(--ease-out-quart);
+  }
+
+  .link-underline:focus-visible {
+    background-size: 100% 1px;
+  }
+
+  @media (hover: hover) {
+    .link-underline:hover {
+      background-size: 100% 1px;
+    }
+  }
+
+  /* --- Butonlar --- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    min-height: 3.25rem;
+    padding: 0.875rem 1.5rem;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.005em;
+    white-space: nowrap;
+    transition:
+      background-color 0.35s var(--ease-out-quart),
+      border-color 0.35s var(--ease-out-quart),
+      color 0.35s var(--ease-out-quart),
+      transform 0.35s var(--ease-out-quart);
+  }
+
+  .btn:active {
+    transform: scale(0.98);
+  }
+
+  .btn svg {
+    flex: none;
+    width: 1rem;
+    height: 1rem;
+    transition: transform 0.5s var(--ease-out-expo);
+  }
+
+  .btn-primary {
+    background-color: var(--color-accent);
+    color: var(--color-ink-900);
+  }
+
+  .btn-ghost {
+    border-color: color-mix(in oklab, var(--color-heading) 22%, transparent);
+    color: var(--color-heading);
+  }
+
+  .btn-espresso {
+    background-color: var(--color-espresso-900);
+    color: var(--color-cream-100);
+  }
+
+  .btn-cyan {
+    background-color: var(--color-cyan-300);
+    color: var(--color-abyss-900);
+  }
+
+  .btn-jade {
+    background-color: var(--color-jade-300);
+    color: var(--color-ink-950);
+  }
+
+  @media (hover: hover) {
+    .btn-primary:hover {
+      background-color: var(--color-accent-strong);
+    }
+
+    .btn-ghost:hover {
+      border-color: color-mix(in oklab, var(--color-accent) 70%, transparent);
+      background-color: color-mix(in oklab, var(--color-accent) 7%, transparent);
+    }
+
+    .theme-jade .btn-ghost:hover {
+      border-color: color-mix(in oklab, var(--color-jade-300) 70%, transparent);
+      background-color: color-mix(in oklab, var(--color-jade-300) 7%, transparent);
+    }
+
+    .btn-espresso:hover {
+      background-color: var(--color-espresso-700);
+    }
+
+    .btn-cyan:hover {
+      background-color: var(--color-cyan-200);
+    }
+
+    .btn-jade:hover {
+      background-color: var(--color-jade-200);
+    }
+
+    .btn:hover [data-icon="down"] {
+      transform: translateY(3px);
+    }
+
+    .btn:hover [data-icon="up-right"] {
+      transform: translate(2px, -2px);
+    }
+
+    .btn:hover [data-icon="right"] {
+      transform: translateX(3px);
+    }
+
+    .btn:hover [data-icon="download"] {
+      transform: translateY(2px);
+    }
+  }
+
+  /* --- Erişilebilirlik --- */
+  .skip-link {
+    position: fixed;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 60;
+    padding: 0.75rem 1.125rem;
+    border-radius: 0.5rem;
+    background-color: var(--color-heading);
+    color: var(--color-ink-900);
+    font-weight: 600;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-200%);
+  }
+
+  .skip-link:focus {
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+  }
+
+  /* --- Üst navigasyon --- */
+  .site-header {
+    border-bottom: 1px solid transparent;
+    transition:
+      background-color 0.5s var(--ease-out-quart),
+      border-color 0.5s var(--ease-out-quart),
+      backdrop-filter 0.5s var(--ease-out-quart);
+  }
+
+  .site-header[data-scrolled] {
+    border-bottom-color: color-mix(in oklab, var(--color-heading) 8%, transparent);
+    background-color: color-mix(in oklab, var(--color-ink-900) 80%, transparent);
+    backdrop-filter: blur(16px) saturate(150%);
+  }
+
+  .monogram {
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    color: var(--color-heading);
+  }
+
+  .menu-toggle {
+    min-height: 2.75rem;
+    padding-inline: 1.125rem;
+    border: 1px solid color-mix(in oklab, var(--color-heading) 20%, transparent);
+    border-radius: 999px;
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-heading);
+  }
+
+  /* --- Mobil menü (yerel <dialog>) --- */
+  .menu-dialog {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    max-width: none;
+    height: 100dvh;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    overflow-y: auto;
+    background-color: var(--color-ink-900);
+    background-image: var(--grain-light);
+    color: var(--color-body);
+  }
+
+  .menu-dialog[open] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .menu-dialog::backdrop {
+    background: transparent;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .menu-dialog {
+      opacity: 0;
+      transition:
+        opacity 0.35s var(--ease-out-quart),
+        overlay 0.35s allow-discrete,
+        display 0.35s allow-discrete;
+    }
+
+    .menu-dialog[open] {
+      opacity: 1;
+    }
+
+    .menu-dialog .menu-item {
+      opacity: 0;
+      transform: translateY(0.875rem);
+      transition:
+        opacity 0.5s var(--ease-out-quart),
+        transform 0.7s var(--ease-out-expo);
+      transition-delay: calc(var(--i, 0) * 45ms + 60ms);
+    }
+
+    .menu-dialog[open] .menu-item {
+      opacity: 1;
+      transform: none;
+    }
+
+    @starting-style {
+      .menu-dialog[open] {
+        opacity: 0;
+      }
+
+      .menu-dialog[open] .menu-item {
+        opacity: 0;
+        transform: translateY(0.875rem);
+      }
+    }
+  }
+}
+
+/* ==========================================================================
+   Hero — açılış animasyonları (CSS, hidrasyonu beklemez)
+   ========================================================================== */
+
+.intro-line {
+  display: block;
+  overflow: hidden;
+  padding-block: 0.06em 0.12em;
+  margin-block: -0.06em -0.12em;
+}
+
+.intro-line > span {
+  display: block;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .intro-line > span {
+    animation: intro-rise 1.15s var(--ease-out-expo) both;
+    animation-delay: var(--d, 0ms);
+  }
+
+  .intro-fade {
+    animation: intro-fade 1s var(--ease-out-expo) both;
+    animation-delay: var(--d, 0ms);
+  }
+}
+
+@keyframes intro-rise {
+  from {
+    transform: translateY(108%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes intro-fade {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ==========================================================================
+   Hero — portre ve ışık kompozisyonu
+   Fotoğraf ana öznedir. Işık, çizgi ve 3D katmanların tamamı arkasında kalır.
+   ========================================================================== */
+
+.hero-atmosphere {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(42% 50% at 80% 44%, color-mix(in oklab, var(--color-violet-500) 10%, transparent), transparent 72%),
+    radial-gradient(55% 60% at 80% 45%, color-mix(in oklab, var(--color-ink-700) 80%, transparent), transparent 72%),
+    radial-gradient(40% 40% at 8% 100%, color-mix(in oklab, var(--color-ink-800) 90%, transparent), transparent 70%);
+}
+
+.portrait {
+  /* Krom tonları mor-mavi ışığı yansıtır */
+  --metal-0: #070b18;
+  --metal-1: #1c2444;
+  --metal-2: #4a5587;
+  --metal-3: #9ba5d8;
+  --metal-4: #dfe3fb;
+  --metal-5: #ffffff;
+  --metal-tint: var(--color-violet-400);
+  --metal-cool: var(--color-accent);
+  --ring-w: 1.5rem;
+
+  position: relative;
+  width: min(100%, 26rem);
+  margin-inline: auto;
+}
+
+.portrait__layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  perspective: 1400px;
+  transform-style: preserve-3d;
+}
+
+/* Işık alanı: fotoğrafın arkasında yoğunlaşıp kenarlara doğru sönen aura */
+.portrait__aura {
+  position: absolute;
+  inset: -45% -55%;
+  background:
+    radial-gradient(30% 26% at 60% 38%, color-mix(in oklab, var(--color-violet-500) 40%, transparent), transparent 72%),
+    radial-gradient(24% 24% at 38% 66%, color-mix(in oklab, var(--color-indigo-400) 26%, transparent), transparent 72%),
+    radial-gradient(42% 40% at 52% 50%, color-mix(in oklab, var(--color-accent) 12%, transparent), transparent 76%);
+}
+
+/* Fotoğrafın çevresinde yavaşça dönen ışık halkası */
+.portrait__halo {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: 128%;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 210deg,
+    transparent 0deg,
+    color-mix(in oklab, var(--color-violet-400) 62%, transparent) 50deg,
+    color-mix(in oklab, var(--color-indigo-400) 46%, transparent) 110deg,
+    color-mix(in oklab, var(--color-accent) 30%, transparent) 160deg,
+    transparent 220deg,
+    transparent 360deg
+  );
+  -webkit-mask: radial-gradient(closest-side, transparent 52%, #000 66%, transparent 100%);
+  mask: radial-gradient(closest-side, transparent 52%, #000 66%, transparent 100%);
+  filter: blur(18px);
+  opacity: 0.75;
+}
+
+/* Sağ üstten süzülen ışık hüzmeleri */
+.portrait__beams {
+  position: absolute;
+  inset: -48% -70% -30% -20%;
+  overflow: hidden;
+}
+
+/* Hüzme üstte sönük başlar, fotoğrafa yaklaştıkça parlar; menünün arkasına taşmaz */
+.beam {
+  position: absolute;
+  top: 0;
+  height: 125%;
+  transform-origin: 50% 0;
+  rotate: 36deg;
+  background: linear-gradient(90deg, transparent, var(--beam-color) 50%, transparent);
+  -webkit-mask: linear-gradient(180deg, transparent 0%, #000 30%, #000 50%, transparent 86%);
+  mask: linear-gradient(180deg, transparent 0%, #000 30%, #000 50%, transparent 86%);
+  mix-blend-mode: screen;
+  opacity: var(--beam-opacity, 0.5);
+}
+
+.beam--1 {
+  left: 62%;
+  width: 11%;
+  --beam-color: color-mix(in oklab, var(--color-violet-400) 55%, transparent);
+}
+
+.beam--2 {
+  left: 73%;
+  width: 4.5%;
+  --beam-color: color-mix(in oklab, var(--color-violet-200) 55%, transparent);
+  --beam-opacity: 0.6;
+}
+
+.beam--3 {
+  left: 81%;
+  width: 15%;
+  --beam-color: color-mix(in oklab, var(--color-indigo-400) 42%, transparent);
+  --beam-opacity: 0.38;
+}
+
+/* Arayüz hissi veren, merkezden sönen ince nokta ızgarası */
+.portrait__grid {
+  position: absolute;
+  inset: -16% -26%;
+  background-image: radial-gradient(circle, rgb(255 255 255 / 0.22) 0.75px, transparent 1.25px);
+  background-size: 18px 18px;
+  -webkit-mask: radial-gradient(closest-side, #000 12%, transparent 100%);
+  mask: radial-gradient(closest-side, #000 12%, transparent 100%);
+  opacity: 0.4;
+}
+
+/* İnce yörünge çizgileri (SVG) */
+.orbit-lines {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 168%;
+  height: auto;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  overflow: visible;
+}
+
+.orbit-lines__node {
+  fill: var(--color-white);
+  filter: drop-shadow(0 0 4px var(--color-violet-300));
+}
+
+/* Krom halka: fotoğrafın altından geçen tek ağır 3D öğe */
+.orbit {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  transform-style: preserve-3d;
+}
+
+.orbit--metal {
+  left: 54%;
+  top: 72%;
+  width: 150%;
+  transform: rotateZ(-14deg) rotateX(70deg);
+}
+
+.orbit__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+}
+
+.orbit--metal .orbit__ring {
+  /* Stüdyo ışığında krom: geniş parlak yansımalar, derin gölgeler, mor ve mavi ortam ışığı */
+  background: conic-gradient(
+    from 180deg,
+    var(--metal-0) 0deg,
+    var(--metal-1) 30deg,
+    var(--metal-3) 52deg,
+    var(--metal-5) 60deg,
+    var(--metal-4) 66deg,
+    var(--metal-2) 86deg,
+    var(--metal-0) 120deg,
+    var(--metal-1) 160deg,
+    var(--metal-tint) 182deg,
+    var(--metal-5) 192deg,
+    var(--metal-2) 204deg,
+    var(--metal-0) 236deg,
+    var(--metal-0) 270deg,
+    var(--metal-1) 300deg,
+    var(--metal-cool) 318deg,
+    var(--metal-5) 328deg,
+    var(--metal-2) 340deg,
+    var(--metal-0) 360deg
+  );
+  -webkit-mask: radial-gradient(closest-side, transparent calc(100% - var(--ring-w)), #000 calc(100% - var(--ring-w) + 1px) calc(100% - 1px), transparent 100%);
+  mask: radial-gradient(closest-side, transparent calc(100% - var(--ring-w)), #000 calc(100% - var(--ring-w) + 1px) calc(100% - 1px), transparent 100%);
+}
+
+/* Halkaya boru hacmi veren iç ışık ve kenar gölgesi */
+.orbit--metal .orbit__ring::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(
+    closest-side,
+    transparent calc(100% - var(--ring-w)),
+    rgb(0 0 0 / 0.55) calc(100% - var(--ring-w) + 1px),
+    rgb(0 0 0 / 0.1) calc(100% - var(--ring-w) * 0.78),
+    rgb(255 255 255 / 0.38) calc(100% - var(--ring-w) * 0.55),
+    rgb(255 255 255 / 0) calc(100% - var(--ring-w) * 0.32),
+    rgb(0 0 0 / 0.5) 100%
+  );
+}
+
+.glass-slab {
+  position: absolute;
+  top: -10%;
+  right: -17%;
+  width: 56%;
+  aspect-ratio: 3 / 4;
+  border-radius: 1.75rem;
+  /* Üstte sabit yansıma çizgileri, altta mor tonlu cam gövde */
+  background:
+    linear-gradient(
+      115deg,
+      transparent 22%,
+      rgb(255 255 255 / 0.15) 30%,
+      rgb(255 255 255 / 0) 37%,
+      transparent 58%,
+      color-mix(in oklab, var(--color-violet-200) 12%, transparent) 64%,
+      transparent 70%
+    ),
+    linear-gradient(
+      160deg,
+      rgb(255 255 255 / 0.13),
+      rgb(255 255 255 / 0.025) 42%,
+      color-mix(in oklab, var(--color-violet-400) 14%, transparent)
+    );
+  box-shadow:
+    inset 0 2.5rem 3rem -2rem rgb(255 255 255 / 0.08),
+    0 3rem 5rem -2.5rem rgb(0 0 0 / 0.75);
+  transform: rotateY(-36deg) rotateX(10deg) rotateZ(6deg);
+}
+
+/* Degrade cam kenarı: yalnızca 1px çerçeve boyanır, hüzme tarafı daha parlak */
+.glass-slab::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    150deg,
+    rgb(255 255 255 / 0.7),
+    color-mix(in oklab, var(--color-violet-300) 40%, transparent) 26%,
+    rgb(255 255 255 / 0.04) 52%,
+    color-mix(in oklab, var(--color-indigo-400) 70%, transparent)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box exclude,
+    linear-gradient(#000 0 0);
+}
+
+/* Yüzeyde gezinen parlama. Degradenin iki ucu boş olduğu için döngü başı görünmez. */
+.glass-slab::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    115deg,
+    transparent 40%,
+    rgb(255 255 255 / 0.18) 47%,
+    rgb(255 255 255 / 0) 54%,
+    transparent 60%
+  );
+  background-size: 300% 100%;
+  background-position: 100% 0;
+}
+
+.chrome-sphere {
+  position: absolute;
+  left: -11%;
+  bottom: 12%;
+  width: 19%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 33% 27%, rgb(255 255 255 / 0.95) 0 3%, rgb(255 255 255 / 0) 13%),
+    radial-gradient(
+      130% 100% at 50% 108%,
+      var(--metal-tint) 0%,
+      var(--metal-1) 30%,
+      var(--metal-4) 44%,
+      var(--metal-2) 50%,
+      var(--metal-0) 72%
+    );
+  box-shadow:
+    inset -0.5rem -0.75rem 1.25rem rgb(0 0 0 / 0.55),
+    inset 0.35rem 0.4rem 0.75rem rgb(255 255 255 / 0.14),
+    0 1.5rem 2.5rem -1rem rgb(0 0 0 / 0.8),
+    0 0 2.5rem -0.5rem color-mix(in oklab, var(--color-violet-500) 45%, transparent);
+}
+
+/* Kemer formlu çerçeve: üst kenar tam yarım daire (yatay yarıçap %50, dikey %42 = genişliğin yarısı) */
+.portrait__plate {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  aspect-ratio: 0.84;
+  border-radius: 50% 50% 1.25rem 1.25rem / 42% 42% 1.25rem 1.25rem;
+  background-color: var(--color-white);
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.08),
+    0 3.5rem 7rem -3rem rgb(0 0 0 / 0.9),
+    1.75rem -1.75rem 5rem -2.5rem color-mix(in oklab, var(--color-violet-500) 75%, transparent),
+    -1.5rem 2.25rem 4.5rem -2.75rem color-mix(in oklab, var(--color-indigo-400) 60%, transparent);
+}
+
+/* Işığın vurduğu ince kenar */
+.portrait__plate::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    215deg,
+    rgb(255 255 255 / 0.95),
+    color-mix(in oklab, var(--color-violet-300) 75%, transparent) 22%,
+    transparent 48%,
+    transparent 72%,
+    color-mix(in oklab, var(--color-indigo-400) 60%, transparent)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box exclude,
+    linear-gradient(#000 0 0);
+}
+
+/* Fotoğraf dosyası değişmez; yalnızca kemere oturacak şekilde yanlardan kırpılır. */
+.portrait__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  object-fit: cover;
+  object-position: 50% 0;
+}
+
+/* Beyaz fonu kenarlarda mor-maviye çeken ışık geçişi; yüzün bulunduğu merkez etkilenmez */
+.portrait__tint {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(115% 85% at 50% 36%, transparent 58%, color-mix(in oklab, var(--color-violet-300) 26%, transparent) 100%),
+    linear-gradient(200deg, color-mix(in oklab, var(--color-violet-200) 22%, transparent), transparent 30%);
+}
+
+/* Mobil ve tablette kompozisyon sadeleşir: bulanık cam yok, hareket yok */
+@media (width < 64rem) {
+  .portrait {
+    --ring-w: 1rem;
+    width: min(72vw, 21rem);
+  }
+
+  .portrait__halo {
+    filter: blur(12px);
+  }
+
+  /* Tek kolonda isim portrenin hemen üstünde; hüzmeler başlığa uzanmasın */
+  .portrait__beams {
+    inset: -12% -45% -20% -10%;
+  }
+
+  .portrait__grid,
+  .beam--3 {
+    display: none;
+  }
+
+  .orbit-lines {
+    width: 150%;
+  }
+
+  .orbit--metal {
+    width: 140%;
+  }
+
+  .glass-slab {
+    right: -12%;
+    width: 48%;
+  }
+}
+
+@media (width >= 64rem) {
+  .glass-slab {
+    backdrop-filter: blur(14px) saturate(140%);
+  }
+}
+
+@media (width >= 64rem) and (prefers-reduced-motion: no-preference) {
+  .portrait__aura {
+    animation: aura-breathe 11s var(--ease-in-out-sine) infinite alternate;
+  }
+
+  .portrait__halo {
+    animation: halo-spin 48s linear infinite;
+  }
+
+  .beam {
+    will-change: opacity, translate;
+    animation: beam-drift var(--beam-time, 10s) var(--ease-in-out-sine) infinite alternate;
+  }
+
+  .beam--2 {
+    --beam-time: 7s;
+  }
+
+  .beam--3 {
+    --beam-time: 13s;
+  }
+
+  .orbit-lines__comet {
+    animation: comet 7s linear infinite;
+  }
+
+  .orbit--metal .orbit__ring {
+    animation: orbit-spin 72s linear infinite;
+  }
+
+  .chrome-sphere {
+    animation: drift 9s var(--ease-in-out-sine) infinite alternate;
+  }
+
+  .glass-slab {
+    animation: sway 14s var(--ease-in-out-sine) infinite alternate;
+  }
+
+  .glass-slab::after {
+    animation: glass-sheen 9s var(--ease-in-out-sine) infinite;
+  }
+}
+
+@keyframes aura-breathe {
+  from {
+    opacity: 0.8;
+    scale: 0.97;
+  }
+  to {
+    opacity: 1;
+    scale: 1.03;
+  }
+}
+
+@keyframes halo-spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes beam-drift {
+  from {
+    opacity: calc(var(--beam-opacity, 0.5) * 0.55);
+    translate: 0 0;
+  }
+  to {
+    opacity: var(--beam-opacity, 0.5);
+    translate: -3% 1%;
+  }
+}
+
+@keyframes comet {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+@keyframes orbit-spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes drift {
+  from {
+    translate: 0 -0.5rem;
+  }
+  to {
+    translate: 0 0.625rem;
+  }
+}
+
+@keyframes sway {
+  from {
+    rotate: -1.5deg;
+  }
+  to {
+    rotate: 1.5deg;
+  }
+}
+
+@keyframes glass-sheen {
+  0%,
+  60% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 0% 0;
+  }
+}
+
+/* ==========================================================================
+   Proje vitrinleri
+   ========================================================================== */
+
+.abyss-light {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(50% 32% at 12% 0%, color-mix(in oklab, var(--color-cyan-400) 11%, transparent), transparent 70%),
+    radial-gradient(45% 30% at 95% 55%, color-mix(in oklab, var(--color-abyss-700) 70%, transparent), transparent 70%);
+}
+
+/* ==========================================================================
+   Deneyim — zaman çizgisi
+   ========================================================================== */
+
+.experience-light {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(40% 30% at 0% 18%, color-mix(in oklab, var(--color-accent) 7%, transparent), transparent 72%);
+}
+
+.timeline {
+  position: relative;
+  padding-left: 1.75rem;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 0.3125rem;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--color-accent) 60%, transparent),
+    color-mix(in oklab, var(--color-heading) 12%, transparent) 18%,
+    color-mix(in oklab, var(--color-heading) 12%, transparent) 82%,
+    transparent
+  );
+}
+
+.timeline__item {
+  --row-pad: 2.5rem;
+  position: relative;
+  padding-block: var(--row-pad);
+  border-top: 1px solid color-mix(in oklab, var(--color-heading) 10%, transparent);
+}
+
+.timeline__item:last-child {
+  border-bottom: 1px solid color-mix(in oklab, var(--color-heading) 10%, transparent);
+}
+
+.timeline__item--featured {
+  background: linear-gradient(90deg, color-mix(in oklab, var(--color-accent) 5%, transparent), transparent 55%);
+}
+
+.timeline__node {
+  position: absolute;
+  left: -1.75rem;
+  top: calc(var(--row-pad) + 0.3rem);
+  width: 0.6875rem;
+  height: 0.6875rem;
+  border: 1px solid color-mix(in oklab, var(--color-accent) 55%, transparent);
+  border-radius: 50%;
+  background-color: var(--color-ink-900);
+}
+
+.timeline__item--featured .timeline__node {
+  border-color: var(--color-accent);
+  background-color: var(--color-accent);
+  box-shadow:
+    0 0 0 0.3125rem color-mix(in oklab, var(--color-accent) 14%, transparent),
+    0 0 1.25rem color-mix(in oklab, var(--color-accent) 55%, transparent);
+}
+
+@media (width >= 64rem) {
+  .timeline {
+    padding-left: 2.75rem;
+  }
+
+  .timeline__item {
+    --row-pad: 3.5rem;
+  }
+
+  .timeline__node {
+    left: -2.75rem;
+  }
+}
+
+/* ==========================================================================
+   CV vitrini — katmanlı belge sahnesi
+   ========================================================================== */
+
+.cv-light {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(45% 55% at 78% 50%, color-mix(in oklab, var(--color-jade-500) 10%, transparent), transparent 72%),
+    radial-gradient(35% 40% at 0% 100%, color-mix(in oklab, var(--color-ink-800) 80%, transparent), transparent 70%);
+}
+
+.cv-stage {
+  position: relative;
+  isolation: isolate;
+  width: min(100%, 34rem);
+  aspect-ratio: 1 / 0.98;
+  margin-inline: auto;
+}
+
+.cv-aura {
+  position: absolute;
+  inset: -18% -22%;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(40% 38% at 56% 52%, color-mix(in oklab, var(--color-jade-400) 38%, transparent), transparent 72%),
+    radial-gradient(28% 26% at 30% 22%, color-mix(in oklab, var(--color-jade-300) 26%, transparent), transparent 70%),
+    radial-gradient(34% 30% at 80% 82%, color-mix(in oklab, var(--color-cyan-400) 18%, transparent), transparent 72%);
+}
+
+/* Sol üstten belgeye düşen ışık konisi: yumuşak kenarlar konik degradeden gelir, bulanıklık gerekmez */
+.cv-beam {
+  position: absolute;
+  left: -10%;
+  top: -38%;
+  z-index: -1;
+  width: 80%;
+  height: 130%;
+  pointer-events: none;
+  transform-origin: 50% 0;
+  rotate: -15deg;
+  background: conic-gradient(
+    from 160deg at 50% 0%,
+    transparent 0deg,
+    color-mix(in oklab, var(--color-jade-300) 40%, transparent) 13deg,
+    color-mix(in oklab, var(--color-jade-200) 55%, transparent) 20deg,
+    color-mix(in oklab, var(--color-jade-300) 40%, transparent) 27deg,
+    transparent 40deg
+  );
+  -webkit-mask: linear-gradient(180deg, transparent 0%, #000 18%, #000 45%, transparent 92%);
+  mask: linear-gradient(180deg, transparent 0%, #000 18%, #000 45%, transparent 92%);
+  mix-blend-mode: screen;
+  opacity: 0.62;
+}
+
+.cv-glass {
+  position: absolute;
+  inset: 9% 3% 7% 12%;
+  z-index: -1;
+  border-radius: 1.75rem;
+  background: linear-gradient(
+    150deg,
+    rgb(255 255 255 / 0.09),
+    rgb(255 255 255 / 0.02) 45%,
+    color-mix(in oklab, var(--color-jade-400) 7%, transparent)
+  );
+  box-shadow:
+    inset 0 2rem 3rem -2rem rgb(255 255 255 / 0.08),
+    0 2.5rem 5rem -2.5rem rgb(0 0 0 / 0.8);
+  transform: perspective(1600px) rotateY(-12deg) rotateX(4deg);
+}
+
+.cv-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    140deg,
+    rgb(255 255 255 / 0.5),
+    rgb(255 255 255 / 0.05) 40%,
+    rgb(255 255 255 / 0.03) 65%,
+    color-mix(in oklab, var(--color-jade-300) 60%, transparent)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box exclude,
+    linear-gradient(#000 0 0);
+}
+
+.cv-sheets {
+  position: absolute;
+  inset: 0;
+  perspective: 1700px;
+  transform-style: preserve-3d;
+}
+
+.cv-sheet {
+  position: absolute;
+  width: 58%;
+  overflow: hidden;
+  border-radius: 0.375rem;
+  background-color: var(--color-white);
+  transition:
+    transform 0.9s var(--ease-out-expo),
+    box-shadow 0.9s var(--ease-out-expo);
+}
+
+.cv-sheet--back {
+  left: 34%;
+  top: 10%;
+  filter: brightness(0.72) saturate(0.85);
+  box-shadow: 0 2rem 3.5rem -1.5rem rgb(0 0 0 / 0.8);
+  transform: rotateY(-20deg) rotateX(7deg) rotateZ(5deg) translateZ(-60px);
+}
+
+.cv-sheet--front {
+  left: 16%;
+  top: 5%;
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.18),
+    0 2.75rem 4rem -1.75rem rgb(0 0 0 / 0.8),
+    -1.25rem -1.25rem 3.5rem -1.75rem color-mix(in oklab, var(--color-jade-300) 50%, transparent);
+  transform: rotateY(-15deg) rotateX(6deg) rotateZ(-3deg);
+}
+
+/* Kâğıt yüzeyindeki ışık parlaması */
+.cv-sheet--front::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    120deg,
+    rgb(255 255 255 / 0.3),
+    rgb(255 255 255 / 0) 34%,
+    rgb(255 255 255 / 0) 70%,
+    color-mix(in oklab, var(--color-jade-300) 10%, transparent)
+  );
+}
+
+.cv-chip {
+  position: absolute;
+  left: 4%;
+  bottom: 9%;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.875rem;
+  border: 1px solid rgb(255 255 255 / 0.14);
+  border-radius: 999px;
+  background-color: color-mix(in oklab, var(--color-ink-950) 72%, transparent);
+  box-shadow: 0 1rem 2rem -1rem rgb(0 0 0 / 0.8);
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.01em;
+  color: var(--color-heading);
+}
+
+.cv-chip__dot {
+  width: 0.4375rem;
+  height: 0.4375rem;
+  border-radius: 50%;
+  background-color: var(--color-jade-300);
+  box-shadow: 0 0 0.75rem var(--color-jade-400);
+}
+
+/* Tek kolonda belgenin üstünde metin var; ışık konisi ona uzanmasın */
+@media (width < 64rem) {
+  .cv-beam {
+    top: -6%;
+    height: 100%;
+  }
+}
+
+@media (width >= 64rem) {
+  .cv-glass,
+  .cv-chip {
+    backdrop-filter: blur(14px) saturate(140%);
+  }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .cv-stage:hover .cv-sheet--front {
+    transform: rotateY(-7deg) rotateX(3deg) rotateZ(-1.5deg) translateY(-0.5rem);
+  }
+
+  .cv-stage:hover .cv-sheet--back {
+    transform: rotateY(-22deg) rotateX(7deg) rotateZ(7deg) translateZ(-70px) translateX(0.75rem);
+  }
+}
+
+@media (width >= 64rem) and (prefers-reduced-motion: no-preference) {
+  .cv-beam {
+    animation: cv-beam-pulse 8s var(--ease-in-out-sine) infinite alternate;
+  }
+}
+
+@keyframes cv-beam-pulse {
+  from {
+    opacity: 0.48;
+  }
+  to {
+    opacity: 0.72;
+  }
+}
+
+/* ==========================================================================
+   İletişim
+   ========================================================================== */
+
+.contact-light {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(50% 45% at 85% 70%, color-mix(in oklab, var(--color-ink-700) 75%, transparent), transparent 72%);
+}
