@@ -27,10 +27,14 @@ export const person = {
   } satisfies MediaImage,
 } as const;
 
-/** Adresler CV'deki (public/files/emre-ethem-aydogan-cv.pdf) bağlantılarla aynıdır. */
+/**
+ * GitHub adresi CV'dekiyle aynıdır. LinkedIn adresi proje sahibinin verdiği
+ * linkedin.com/in/emreethemaydoğan adresidir; "ğ" URL'de %C4%9F olarak yazılır.
+ * CV'deki "emreethemaydogan" yazımı LinkedIn'de açılmıyor.
+ */
 export const socialLinks = {
   github: { label: "GitHub", href: "https://github.com/EmreEthemAydogan", external: true },
-  linkedin: { label: "LinkedIn", href: "https://www.linkedin.com/in/emreethemaydogan/", external: true },
+  linkedin: { label: "LinkedIn", href: "https://www.linkedin.com/in/emreethemaydo%C4%9Fan", external: true },
 } as const satisfies Record<string, LinkItem>;
 
 export const navItems: readonly LinkItem[] = [
