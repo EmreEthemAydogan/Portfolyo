@@ -70,8 +70,15 @@ export const experienceIntro = {
     "ERP danışmanlığından bankacılık temalı bir RAG projesine kadar farklı ekiplerde çalıştım. Her rolde yazılımı biraz daha işin içinden, kullanıcının gözünden görmeyi öğrendim.",
 } as const;
 
-export const cvSection = {
+/** Deneyimden ayrı tutulur: bootcamp profesyonel iş deneyimi değildir. İçerik `education.ts` içinde. */
+export const educationIntro = {
   index: "03",
+  eyebrow: "Eğitim",
+  titleLines: ["Eğitim ve", "Bootcamp"],
+} as const;
+
+export const cvSection = {
+  index: "04",
   eyebrow: "Özgeçmiş",
   titleLines: ["Hepsi", "tek belgede"],
   description:
@@ -106,7 +113,7 @@ export const cvSection = {
 } as const;
 
 export const contact = {
-  index: "04",
+  index: "05",
   eyebrow: "İletişim",
   titleLines: ["Fikriniz varsa,", "konuşalım"],
   description:
