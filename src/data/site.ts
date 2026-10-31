@@ -45,9 +45,9 @@ export const navItems: readonly LinkItem[] = [
 export const hero = {
   eyebrow: "Bilgisayar Mühendisi",
   nameLines: ["Emre Ethem", "Aydoğan"],
-  tagline: "Yazılıma koddan değil, ihtiyaçtan başlarım.",
+  tagline: "Yazılım geliştirirken önce ihtiyacı anlamaya odaklanırım.",
   description:
-    "Önce karşımdakini dinler, sorunu netleştiririm. Sonra onu canlıda çalışan, işe yarayan bir sisteme dönüştürürüm. Yapay zekâyı bu süreçte üretken bir araç olarak kullanırım, ama teknik kararlar ve sorumluluk bende kalır.",
+    "Önce kullanıcıyı dinler, ihtiyacı netleştiririm. Ardından bu ihtiyaca uygun, günlük işlerde kullanılabilecek uygulamalar geliştiririm. Web uygulamaları, ERP sistemleri ve yapay zekâ entegrasyonları üzerine çalışıyorum.",
   primaryCta: { label: "Projelerimi İncele", href: "#projeler" },
   secondaryCta: { label: "GitHub Profilim", href: socialLinks.github.href },
   focusAreas: ["Full stack web uygulamaları", "ERP ve kurumsal sistemler", "RAG ve yapay zekâ entegrasyonu"],

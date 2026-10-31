@@ -80,8 +80,8 @@ export const aydoganCanta = {
 export const healthAssistant = {
   id: "proje-saglik-asistani",
   index: "02",
-  title: "RAG Tabanlı Sağlık Asistanı",
-  titleLines: ["RAG Tabanlı", "Sağlık Asistanı"],
+  title: "Bulut Tabanlı Sağlık Sistemi",
+  titleLines: ["Bulut Tabanlı", "Sağlık Sistemi"],
   categories: ["Yapay Zekâ", "RAG", "Makine Öğrenmesi"],
   badges: ["Hackathon birinciliği", "Ekip projesi"],
   summary:
@@ -107,7 +107,7 @@ export const healthAssistant = {
       src: `${HEALTH}/app-screenshot.png`,
       width: 1252,
       height: 767,
-      alt: "Sağlık asistanının risk analizi ekranı: düşük risk sonucu, risk çubuğu, asistanın yorumu, PDF indirme butonu ve geçmiş tahminler listesi.",
+      alt: "Sağlık sisteminin risk analizi ekranı: düşük risk sonucu, risk çubuğu, asistanın yorumu, PDF indirme butonu ve geçmiş tahminler listesi.",
     },
     award: {
       src: `${HEALTH}/hackathon-award.png`,
@@ -137,7 +137,7 @@ export const healthAssistant = {
   },
   video: {
     src: "/videos/health-assistant/demo.mp4",
-    title: "Sağlık asistanı uygulama demosu",
+    title: "Sağlık sistemi uygulama demosu",
     durationLabel: "0:41",
     durationText: "41 saniye",
   },
