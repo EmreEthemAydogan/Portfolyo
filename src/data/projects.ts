@@ -91,10 +91,10 @@ export const healthAssistant = {
   contributionsTitle: "Benim katkım",
   /** Ekip çalışmasındaki kişisel katkılar yalnızca bunlardır (CLAUDE.md, bölüm 5). */
   contributions: [
-    "RAG mimarisini Python ile geliştirdim.",
+    "RAG tabanlı chatbotun mimarisini Python ile tasarlayıp geliştirdim.",
     "Yapay zekâ bileşenlerini uygulamaya entegre ettim.",
-    "Yapay sinir ağları çalışmalarına katkı verdim.",
-    "Risk tahminlerine dayalı chatbot değerlendirme sisteminin geliştirilmesine katkı verdim.",
+    "Risk tahmini için kullanılan yapay sinir ağı modellerinin geliştirilmesinde ana sorumluluğu üstlendim.",
+    "Risk tahminlerini temel alarak kullanıcıya değerlendirme sunan chatbot sistemini geliştirdim.",
   ],
   stack: ["Python", "Flask", "RAG", "LangChain", "OpenAI API", "TensorFlow/Keras", "React", "Docker"],
   repo: {
