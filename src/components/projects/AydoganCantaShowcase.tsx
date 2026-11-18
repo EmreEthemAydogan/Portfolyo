@@ -32,7 +32,7 @@ function AdminShot({ image, caption, sizes }: { image: MediaImage; caption: stri
 }
 
 export function AydoganCantaShowcase() {
-  const { images, admin, aiApproach } = project;
+  const { images, admin, devProcess } = project;
   const titleId = `${project.id}-baslik`;
   const adminTitleId = `${project.id}-yonetim`;
 
@@ -93,13 +93,13 @@ export function AydoganCantaShowcase() {
           />
         </Reveal>
 
-        {/* Çalışma biçimi ve teknik künye */}
+        {/* Geliştirme süreci ve teknik künye */}
         <div className="mt-14 grid gap-x-8 gap-y-10 border-t border-espresso-900/10 pt-10 lg:mt-20 lg:grid-cols-12">
           <div className="lg:col-span-7">
             <h4 className="max-w-[30rem] font-display text-xl font-medium leading-snug tracking-[-0.02em] text-espresso-900 sm:text-2xl">
-              {aiApproach.title}
+              {devProcess.title}
             </h4>
-            <p className="mt-4 max-w-[40rem] leading-relaxed">{aiApproach.text}</p>
+            <p className="mt-4 max-w-[40rem] leading-relaxed">{devProcess.text}</p>
           </div>
           <dl className="grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:col-span-4 lg:col-start-9 lg:grid-cols-1">
             <div>

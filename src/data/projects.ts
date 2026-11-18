@@ -25,9 +25,10 @@ export const aydoganCanta = {
     "React arayüzünü API katmanına bağladım, ödeme ve e-posta servislerini entegre ettim.",
     "Uygulamayı canlı ortama taşıyıp kullanıma açtım.",
   ],
-  aiApproach: {
-    title: "Yapay zekâyla geliştirdim, kararları ben verdim.",
-    text: "ChatGPT’yi mimariyi değerlendirmek ve geliştirme adımlarını planlamak için, Claude Code’u geliştirme, hata giderme, kod inceleme ve güvenlik testlerinde kullandım. Araçlara hangi görevi vereceğimi ben belirledim. Proje hedeflerini, geliştirme kurallarını ve teknik kararları Markdown dosyalarında belgeledim.",
+  /** Yapay zekâ araçları burada yardımcı araç olarak anılır, öne çıkarılmaz (CLAUDE.md, bölüm 5). */
+  devProcess: {
+    title: "Geliştirme süreci",
+    text: "Geliştirme sürecinde ChatGPT ve Claude Code’u araştırma, planlama, hata ayıklama ve kod inceleme çalışmalarında yardımcı araçlar olarak kullandım. Projenin gereksinimlerini, mimari yapısını ve geliştirme adımlarını dokümante ederek ilerledim.",
   },
   stack: ["React", "JavaScript", "ASP.NET Core", "Entity Framework Core", "PostgreSQL"],
   live: {

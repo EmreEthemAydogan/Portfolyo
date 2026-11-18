@@ -28,9 +28,8 @@ export const person = {
 } as const;
 
 /**
- * GitHub adresi CV'dekiyle aynıdır. LinkedIn adresi proje sahibinin verdiği
- * linkedin.com/in/emreethemaydoğan adresidir; "ğ" URL'de %C4%9F olarak yazılır.
- * CV'deki "emreethemaydogan" yazımı LinkedIn'de açılmıyor.
+ * GitHub ve LinkedIn adresleri CV'dekiyle aynıdır. LinkedIn adresindeki "ğ"
+ * URL'de %C4%9F olarak yazılır; "emreethemaydogan" yazımı LinkedIn'de açılmıyor.
  */
 export const socialLinks = {
   github: { label: "GitHub", href: "https://github.com/EmreEthemAydogan", external: true },
